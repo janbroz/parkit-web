@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :parkings do
     get :parking_info, on: :collection
   end
+
+  resources :admin
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -5,6 +5,11 @@ class ParkingsController < ApplicationController
     render json: @parkings
   end
 
+  def show
+  end
+
+  def create
+  end
 
   def parking_info
     # This is a dummy json response to check with the mobile app.
