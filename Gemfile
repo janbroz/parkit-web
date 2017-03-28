@@ -24,6 +24,9 @@ gem 'mongoid', '4.0.1'
 # gem 'bson'
 # gem 'bson_ext'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
