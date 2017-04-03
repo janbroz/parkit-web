@@ -1,0 +1,3 @@
+class Parking
+  include Mongoid::Document
+end
