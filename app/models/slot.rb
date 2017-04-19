@@ -7,6 +7,6 @@ class Slot
 
   belongs_to :parking
   
-  validates :x_loc, y_loc, presence: true
+  validates :x_loc, :y_loc, presence: true
   
 end
