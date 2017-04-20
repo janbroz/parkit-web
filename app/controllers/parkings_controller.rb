@@ -1,5 +1,7 @@
 class ParkingsController < ApplicationController
 
+  before_action :authenticate_user!
+  
   def index
     @parkings = Parking.all
 
