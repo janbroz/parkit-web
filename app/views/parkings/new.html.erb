@@ -1,13 +1,27 @@
-<%= form_for :parking, url: parkings_path do |f| %>
-<p>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
-</p>
-<p>
-  <%= f.label :description %><br>
-  <%= f.text_field :description %>
-</p>
-<p>
-  <%= f.submit %>
-</p>
-<% end %>
+<h1> New parking spot </h1>
+
+<div class="container">
+  <%= form_for :parking, url: parkings_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+
+  <!-- This is optional, use for a better formating -->
+  <!-- <div class="form-group row"> -->
+  <!--   <%= f.label :description, "Description:", class: "col-sm-2 col-form-label"  %> -->
+  <!--   <%= f.text_field :description %>     -->
+  <!--   <\!-- <label for="description" class="col-sm-2 col-form-label">Description</label> -\-> -->
+  <!--   <\!-- <div class="col-sm-4"> -\-> -->
+  <!--   <\!--   <input type="text" class="form-control" id="description" placeholder="Description"> -\-> -->
+  <!--   <\!-- </div> -\-> -->
+  <!-- </div> -->
+  <p>
+    <%= f.submit %>
+  </p>
+  <% end %>
+</div>

@@ -9,6 +9,8 @@ class ParkingsController < ApplicationController
   end
 
   def show
+    @parking = Parking.find(params[:id])
+    
   end
 
   def new
@@ -16,7 +18,10 @@ class ParkingsController < ApplicationController
   end
 
   def create
-    render plain: params[:parking].inspect
+    @parking = Parking.new(parking_params)
+    @parking.save
+    redirect_to @parking
+    #render plain: params[:parking].inspect
   end
 
   def parking_info
@@ -25,5 +30,9 @@ class ParkingsController < ApplicationController
     render json: @parking
   end
 
+  private
+  def parking_params
+    params.require(:parking).permit(:name, :description)
+  end
   
 end
