@@ -33,9 +33,31 @@ class ParkingsController < ApplicationController
   end
 
   def parking_info
-    @parking = Parking.find(params[:id])
+    #@parking = Parking.find(params[:id])
     #@parking = ["hello", "there"] We can use a dummy json here while the full functionality is implemented.
-    render json: @parking
+    park = { "parqueaderos": [
+                               {
+                                 "x":0,
+                                 "y":0,
+                                 "estado":"F",
+                                "direccion":"D"
+                               },
+                               {
+                                 "x":1,
+                                 "y":1,
+                                 "estado":"F",
+                                "direccion":"D"
+                               },
+                               {                              
+                                 "x":1,
+                                 "y":2,
+                                 "estado":"F",
+                                "direccion":"D"
+                               }
+                             ]}
+
+    render json: park
+    #render json: @parking
   end
 
   private
