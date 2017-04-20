@@ -17,6 +17,12 @@ class ParkingsController < ApplicationController
 
   end
 
+  def destroy
+    @parking = Parking.find(params[:id])
+    @parking.destroy
+    redirect_to '/parkings', :notice => "Parking was deleted"
+  end
+
   def create
     @parking = Parking.new(parking_params)
     @parking.save
@@ -25,8 +31,8 @@ class ParkingsController < ApplicationController
   end
 
   def parking_info
-    # This is a dummy json response to check with the mobile app.
-    @parking = ["hello", "there"]
+    @parking = Parking.find(params[:id])
+    #@parking = ["hello", "there"] We can use a dummy json here while the full functionality is implemented.
     render json: @parking
   end
 

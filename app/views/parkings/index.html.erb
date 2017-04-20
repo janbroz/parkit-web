@@ -5,12 +5,14 @@
     <th> Name </th>
     <th> Description </th>
     <th> Details </th>
+    <th> Delete </th>
   </tr>
   <% @parkings.each do |parking| %>
   <tr>
     <td> <%= parking.name %> </td>
     <td> <%= parking.description %> </td>
-    <td> <%= link_to 'Show', parking_path(parking) %> </td>    
+    <td> <%= link_to 'Show', parking_path(parking) %> </td>
+    <td> <%= link_to 'Destroy', parking, method: :delete, data: {confirm: 'Are you sure?'} %>
   </tr>
   <% end %>
 </table>
