@@ -1,14 +1,22 @@
 class ParkingsController < ApplicationController
 
   def index
-    @parkings = ["park1", "park2"]
-    render json: @parkings
+    @parkings = Parking.all
+
+    
+    
+    #render json: @parkings
   end
 
   def show
   end
 
+  def new
+
+  end
+
   def create
+    render plain: params[:parking].inspect
   end
 
   def parking_info

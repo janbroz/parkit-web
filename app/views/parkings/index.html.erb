@@ -1,0 +1,16 @@
+<p> Holi! </p>
+
+<table>
+  <tr>
+    <th> Name </th>
+    <th> Description </th>
+    <th> Slots </th>
+  </tr>
+  <% @parkings.each do |parking| %>
+  <tr>
+    <td> <%= parking.name %> </td>
+    <td> <%= parking.description %> </td>
+    <td> 42 </td>
+  </tr>
+  <% end %>
+</table>
