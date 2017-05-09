@@ -1,20 +1,23 @@
-<h1> Parking admin page! </h1>
+<h1> Pagina de administracion de parqueaderos </h1>
+
+</br>
+<p> Esta lista muestra los parqueaderos disponibles en la aplicacion </p>
 
 <table class="table table-striped table-bordered table-hover">
   <tr>
-    <th> Name </th>
-    <th> Description </th>
-    <th> Details </th>
-    <th> Delete </th>
+    <th> Nombre </th>
+    <th> Descripcion </th>
+    <th> Detalles </th>
+    <th> Borrar </th>
   </tr>
   <% @parkings.each do |parking| %>
   <tr>
     <td> <%= parking.name %> </td>
     <td> <%= parking.description %> </td>
-    <td> <%= link_to 'Show', parking_path(parking) %> </td>
-    <td> <%= link_to 'Destroy', parking, method: :delete, data: {confirm: 'Are you sure?'} %>
+    <td> <%= link_to 'Mostrar', parking_path(parking) %> </td>
+    <td> <%= link_to 'Borrar', parking, method: :delete, data: {confirm: 'Are you sure?'} %>
   </tr>
   <% end %>
 </table>
 
-<%= link_to 'New parking', new_parking_path %>
+<%= link_to 'Crear parqueadero', new_parking_path %>
