@@ -1,5 +1,5 @@
 development:
-  sessions:
+  clients:
     default:
       database: parkitapp_development
       hosts:
@@ -7,7 +7,7 @@ development:
       options:
 
 test:
-  sessions:
+  clients:
     default:
       database: parkitapp_test
       hosts:
@@ -18,7 +18,7 @@ test:
         retry_interval: 0
 
 production:
-  sessions:
+  clients:
     default:
       uri: <%= ENV['MONGODB_URI'] %>
       options:
