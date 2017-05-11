@@ -19,6 +19,22 @@ class ParkingsController < ApplicationController
 
   end
 
+  def edit
+    @parking = Parking.find(params[:id])
+
+  end
+
+  def update
+    @parking = Parking.find(params[:id])
+    puts "Old stuff is #{@parking.rows}"
+    
+    if @parking.update_attributes(parking_params)
+      redirect_to '/parkings', :notice => "El parqueadero se actualizo correctamente"
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @parking = Parking.find(params[:id])
     @parking.destroy
@@ -29,7 +45,6 @@ class ParkingsController < ApplicationController
     @parking = Parking.new(parking_params)
     @parking.save
     redirect_to @parking
-    #render plain: params[:parking].inspect
   end
 
   def parking_info
@@ -216,35 +231,13 @@ class ParkingsController < ApplicationController
               ]
     }
 
-    
-    # park = { "parqueaderos": [
-    #                            {
-    #                              "x":0,
-    #                              "y":0,
-    #                              "estado":"F",
-    #                             "direccion":"D"
-    #                            },
-    #                            {
-    #                              "x":1,
-    #                              "y":1,
-    #                              "estado":"F",
-    #                             "direccion":"D"
-    #                            },
-    #                            {                              
-    #                              "x":1,
-    #                              "y":2,
-    #                              "estado":"F",
-    #                             "direccion":"D"
-    #                            }
-    #                          ]}
-
     render json: park
     #render json: @parking
   end
 
   private
   def parking_params
-    params.require(:parking).permit(:name, :description)
+    params.require(:parking).permit(:name, :description, :rows, :columns)
   end
   
 end

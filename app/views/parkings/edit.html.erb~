@@ -1,0 +1,43 @@
+<h1> Editar el parqueadero </h1>
+
+<div class="container">
+  <%= form_for(@parking) do |f| %>
+
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :rows %><br>
+    <%= f.number_field :rows %>
+  </p>
+  <p>
+    <%= f.label :columns %><br>
+    <%= f.number_field :columns %>
+  </p>  
+
+  <table class="table table-striped table-bordered table-hover">
+    <tr>
+      <th> Nombre </th>
+      <th> Posicion x: </th>
+      <th> Posicion y: </th>
+    </tr>
+    <% @parking.slots.each do |slot| %>
+    <tr>
+      <td> <%= slot.name %> </td>
+      <td> <%= slot.x_loc %> </td>
+      <td> <%= slot.y_loc %> </td>
+    </tr>
+    <% end %>
+    
+  </table>
+  <p>
+    <%= f.submit %>
+  </p>
+  <% end %>
+
+</div>

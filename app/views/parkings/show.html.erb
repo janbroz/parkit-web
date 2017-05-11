@@ -6,3 +6,6 @@
 <b> Descripcion:</b> <%= @parking.description %>
 </br>
 <b>Espacios:</b> <%= @parking.slots.length %>
+
+</br>
+<%= link_to "Editar", edit_parking_path(@parking), class: "btn btn-primary btn-xs" %>
