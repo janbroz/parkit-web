@@ -26,13 +26,15 @@
       <th> Posicion y: </th>
       <th> Posicion x: </th>
       <th> Estado: </th>
+      <th> Modificar </th>
     </tr>
     <% @parking.slots.each do |slot| %>
     <tr>
       <td> <%= slot.name %> </td>
       <td> <%= slot.y_loc %> </td>
       <td> <%= slot.x_loc %> </td>
-      <td> Libre </td>
+      <td> <%= slot.state %> </td>
+      <td> <%= button_to "change", { :controller => 'slots', :id => slot.id,  :action => "change"}, :method => :put %></td>
     </tr>
     <% end %>
     

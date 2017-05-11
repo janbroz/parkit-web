@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     get :parking_info, on: :collection
   end
 
+  resources :slots do
+    put :change, on: :member
+  end
+  
+
   resources :admin
   
   # Example of regular route:

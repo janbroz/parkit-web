@@ -101,7 +101,7 @@ class ParkingsController < ApplicationController
       tmp_val = {
         "x":slot.x_loc,
         "y":slot.y_loc,
-        "estado":"E",
+        "estado":slot.state,
         "direccion":"U"
       }
       slots << tmp_val
