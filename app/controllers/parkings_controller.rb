@@ -48,6 +48,7 @@ class ParkingsController < ApplicationController
             new_slot.x_loc = j
             new_slot.y_loc = i
             new_slot.parking = @parking
+            new_slot.state = "E"
 
             @parking.slot_ids << new_slot.id
             new_slot.save
@@ -82,6 +83,7 @@ class ParkingsController < ApplicationController
       new_slot.x_loc = j
       new_slot.y_loc = i
       new_slot.parking = @parking
+      new_slot.state = "E"
 
       @parking.slot_ids << new_slot.id
       new_slot.save
