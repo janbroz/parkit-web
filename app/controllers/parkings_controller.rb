@@ -95,7 +95,22 @@ class ParkingsController < ApplicationController
   def parking_info
     #@parking = Parking.find(params[:id])
     #@parking = ["hello", "there"] We can use a dummy json here while the full functionality is implemented.
-
+    parking = Parking.last
+    slots = []
+    parking.slots.each do |slot|
+      tmp_val = {
+        "x":slot.x_loc,
+        "y":slot.y_loc,
+        "estado":"E",
+        "direccion":"U"
+      }
+      slots << tmp_val
+    end
+    
+    final = {
+      "parqueaderos": slots
+    }
+    
     park = {
       "parqueaderos":
               [
@@ -276,7 +291,8 @@ class ParkingsController < ApplicationController
               ]
     }
 
-    render json: park
+    #render json: park
+    render json: final
     #render json: @parking
   end
 
