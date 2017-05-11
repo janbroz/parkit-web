@@ -1,15 +1,24 @@
-<h1> New parking spot </h1>
+<h1> Crear parqueadero </h1>
 
 <div class="container">
   <%= form_for :parking, url: parkings_path do |f| %>
   <p>
-    <%= f.label :name %><br>
+    <%= f.label :nombre %><br>
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :description %><br>
+    <%= f.label :descripcion %><br>
     <%= f.text_field :description %>
   </p>
+  <p>
+    <%= f.label :columnas %><br>
+    <%= f.number_field :columns %>
+  </p>
+  <p>
+    <%= f.label :filas %><br>
+    <%= f.number_field :rows %>
+  </p>  
+  
 
   <!-- This is optional, use for a better formating -->
   <!-- <div class="form-group row"> -->

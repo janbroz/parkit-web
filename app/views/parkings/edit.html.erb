@@ -23,15 +23,15 @@
   <table class="table table-striped table-bordered table-hover">
     <tr>
       <th> Nombre </th>
-      <th> Posicion x: </th>
       <th> Posicion y: </th>
+      <th> Posicion x: </th>
       <th> Estado: </th>
     </tr>
     <% @parking.slots.each do |slot| %>
     <tr>
       <td> <%= slot.name %> </td>
-      <td> <%= slot.x_loc %> </td>
       <td> <%= slot.y_loc %> </td>
+      <td> <%= slot.x_loc %> </td>
       <td> Libre </td>
     </tr>
     <% end %>

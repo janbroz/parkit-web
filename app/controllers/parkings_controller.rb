@@ -26,9 +26,38 @@ class ParkingsController < ApplicationController
 
   def update
     @parking = Parking.find(params[:id])
+    # check if the user updated the number of columns and rows for the parkings, if so
+    # modify the existing ones.
+    old_rows = @parking.rows
+    old_columns = @parking.columns
+    
     puts "Old stuff is #{@parking.rows}"
     
     if @parking.update_attributes(parking_params)
+      if @parking.rows != old_rows || @parking.columns != old_columns
+        # Magic goes here. To make things easy delete all the parking spots and create a new ones.
+        @parking.slots.each do |slot|
+          slot.delete
+        end
+        rows = @parking.rows
+        columns = @parking.columns
+        for i in 0..rows-1
+          for j in 0..columns-1
+            new_slot = Slot.new
+            new_slot.name = "parking slot"
+            new_slot.x_loc = j
+            new_slot.y_loc = i
+            new_slot.parking = @parking
+
+            @parking.slot_ids << new_slot.id
+            new_slot.save
+          end
+        end
+        @parking.save
+
+      end
+
+      
       redirect_to '/parkings', :notice => "El parqueadero se actualizo correctamente"
     else
       render 'edit'
@@ -44,6 +73,22 @@ class ParkingsController < ApplicationController
   def create
     @parking = Parking.new(parking_params)
     @parking.save
+    rows = @parking.rows
+    columns = @parking.columns
+    for i in 0..rows-1
+      for j in 0..columns-1
+      new_slot = Slot.new
+      new_slot.name = "parking slot"
+      new_slot.x_loc = j
+      new_slot.y_loc = i
+      new_slot.parking = @parking
+
+      @parking.slot_ids << new_slot.id
+      new_slot.save
+      end
+    end
+    @parking.save
+    
     redirect_to @parking
   end
 
