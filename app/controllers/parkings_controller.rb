@@ -1,6 +1,6 @@
 class ParkingsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:parking_info]
+  before_action :authenticate_user!, except: [:parking_info, :photo_update]
   
   def index
     @parkings = Parking.all
@@ -296,6 +296,14 @@ class ParkingsController < ApplicationController
     #render json: park
     render json: final
     #render json: @parking
+  end
+
+  def photo_update
+    param = params[:parking_spot]
+    puts param
+    bla = {:holi => "hola"}
+    render json: bla
+
   end
 
   private
