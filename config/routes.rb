@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :parkings do
     get :parking_info, on: :collection
+    post :photo_update, on: :collection
   end
 
   resources :slots do

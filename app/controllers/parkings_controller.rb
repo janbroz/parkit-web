@@ -1,6 +1,6 @@
 class ParkingsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:parking_info]
+  before_action :authenticate_user!, except: [:parking_info, :photo_update]
   
   def index
     @parkings = Parking.all
@@ -296,6 +296,25 @@ class ParkingsController < ApplicationController
     #render json: park
     render json: final
     #render json: @parking
+  end
+
+  def photo_update
+    temp_file = params[:parking_spot].read
+    filename = params[:parking_spot].original_filename
+
+    File.open(Rails.root.join('lib', 'assets', 'python', filename), 'wb') do |file|
+      file.write(temp_file)
+    end
+    puts filename
+
+
+    #tmp_file = "#{Rails.root}/tmp/uploaded.jpg"
+    #contents = params[:parking_spot].read
+    #data = `python lib/assets/python/parkit_script.py --image lib/assets/python/parking-6.jpg`
+    bla = {:holi => "oh shit"}
+    #puts "data is: #{data}"
+    render json: bla
+
   end
 
   private
