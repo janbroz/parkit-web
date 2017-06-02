@@ -125,11 +125,11 @@ def spot_occ(pixels, size):
     percent = pixels / size
     #print(pixels, percent)
     if percent < 0.1:
-        return "green"
+        return 0
     elif percent < 0.4:
-        return "orange"
+        return 1
     else:
-        return "red"
+        return 2
 
 
 #draw_rect()

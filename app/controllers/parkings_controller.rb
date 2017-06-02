@@ -299,20 +299,44 @@ class ParkingsController < ApplicationController
   end
 
   def photo_update
-    temp_file = params[:parking_spot].read
-    filename = params[:parking_spot].original_filename
+    #temp_file = params[:parking_spot].read
+    #filename = params[:parking_spot].original_filename
 
-    File.open(Rails.root.join('lib', 'assets', 'python', filename), 'wb') do |file|
-      file.write(temp_file)
-    end
-    puts filename
+    #File.open(Rails.root.join('lib', 'assets', 'python', filename), 'wb') do |file|
+    #  file.write(temp_file)
+    #end
+    #puts filename
 
 
     #tmp_file = "#{Rails.root}/tmp/uploaded.jpg"
     #contents = params[:parking_spot].read
-    #data = `python lib/assets/python/parkit_script.py --image lib/assets/python/parking-6.jpg`
-    bla = {:holi => "oh shit"}
-    #puts "data is: #{data}"
+    data = `python lib/assets/python/parkit_script.py --image lib/assets/python/parking-6.jpg`
+    arr = data[1..-2].split(',').collect! {|n| n.to_i}
+    p_data = arr.in_groups(2)
+    bla = {:holi => data}
+
+    # Now update the parking slots according to the parsed states:
+    parking = Parking.last
+    if parking
+      p_data.each_with_index do |spot, row|
+        spot.each_with_index do |val, column|
+          tmp_park = parking.slots.where(x_loc: column, y_loc: row).last
+          if tmp_park
+            if val == 0
+              tmp_park.state = "E"
+            elsif val == 1 || val == 2
+              tmp_park.state = "F"
+            end
+            tmp_park.save
+
+            puts tmp_park.state
+          else
+            puts "Got a problem here boss"
+          end
+          #puts "value is: #{val} at: #{row},#{column}"
+        end
+      end
+    end
     render json: bla
 
   end
