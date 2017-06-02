@@ -300,8 +300,10 @@ class ParkingsController < ApplicationController
 
   def photo_update
     param = params[:parking_spot]
-    puts param
-    bla = {:holi => "hola"}
+    #contents = params[:parking_spot].read
+    data = `python lib/assets/python/parkit_script.py --image lib/assets/python/parking-6.jpg`
+    bla = {:holi => data}
+    puts "data is: #{data}"
     render json: bla
 
   end
